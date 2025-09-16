@@ -1,17 +1,19 @@
-from textnode import TextNode, TextType
-from inline_markdown import split_nodes_delimiter
+from markdown_blocks import markdown_to_html_node
 
 
 def main():
-    # text_node = TextNode(
-    #     "This is some anchor text", TextType.LINK, "https://www.boot.dev"
-    # )
+    md = """
+This is **bolded** paragraph
+text in a p
+tag here
 
-    node = TextNode("This is text with a `code block` word", TextType.TEXT)
-    split_nodes = split_nodes_delimiter([node], "`", TextType.CODE)
-    print(split_nodes)
+This is another paragraph with _italic_ text and `code` here
 
-    # print(text_node.__repr__())
+"""
+
+    test = markdown_to_html_node(md)
+
+    print(test)
 
 
 main()
