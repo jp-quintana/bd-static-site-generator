@@ -1,19 +1,18 @@
-from markdown_blocks import markdown_to_html_node
+import os
+import shutil
+from copystatic import copy_files_recursive
+
+dir_path_static = "static"
+dir_path_public = "public"
 
 
 def main():
-    md = """
-This is **bolded** paragraph
-text in a p
-tag here
+    print("Deleting public directory...")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
 
-This is another paragraph with _italic_ text and `code` here
-
-"""
-
-    test = markdown_to_html_node(md)
-
-    print(test)
+    print("Copying static files to public directory...")
+    copy_files_recursive(dir_path_static, dir_path_public)
 
 
 main()
