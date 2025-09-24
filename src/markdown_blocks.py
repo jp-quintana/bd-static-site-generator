@@ -147,3 +147,14 @@ def quote_to_html_node(block: str):
     content = " ".join(new_lines)
     children = text_to_children(content)
     return ParentNode("blockquote", children)
+
+
+def extract_title(markdown: str):
+    markdown_blocks = markdown_to_blocks(markdown)
+    for block in markdown_blocks:
+        if block.startswith("# "):
+            title = block[2:].strip()
+            if len(title) > 0:
+                return title
+
+    raise ValueError("must include h1 header")
